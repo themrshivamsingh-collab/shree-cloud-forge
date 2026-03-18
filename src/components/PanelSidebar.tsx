@@ -15,6 +15,7 @@ const mainNav = [
   { label: "Database", icon: Database },
   { label: "Server Properties", icon: FileText },
   { label: "Activity", icon: Activity },
+  { label: "Worlds", icon: Globe },
   { label: "Version", icon: GitBranch },
 ];
 
