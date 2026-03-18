@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useCallback, ReactNode } from "react";
 
 export const THEME_NAMES: Record<number, string> = {
-  0: "Default (Blue)",
+  0: "Arix (Default)",
   1: "Crimson Red",
   2: "Emerald Green",
   3: "Amber Gold",
@@ -19,7 +19,7 @@ type ThemeContextType = {
 
 const ThemeContext = createContext<ThemeContextType>({
   themeId: 0,
-  themeName: "Default (Blue)",
+  themeName: "Arix (Default)",
   setTheme: () => {},
 });
 
@@ -33,12 +33,10 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     if (id >= 0 && id <= 7) {
       setThemeId(id);
       localStorage.setItem("shreecloud-theme", String(id));
-      // Apply data attribute for CSS
       document.documentElement.setAttribute("data-theme", String(id));
     }
   }, []);
 
-  // Apply on mount
   if (typeof window !== "undefined") {
     document.documentElement.setAttribute("data-theme", String(themeId));
   }

@@ -3,41 +3,41 @@
 @tailwind utilities;
 
 @layer base {
-  /* Theme 0 — Default Blue */
+  /* Theme 0 — Arix (Default) — Deep navy with indigo-blue accent */
   :root,
   [data-theme="0"] {
-    --background: 222.2 47.4% 11.2%;
-    --foreground: 210 40% 98%;
-    --card: 217.2 32.6% 17.5%;
-    --card-foreground: 210 40% 98%;
-    --popover: 217.2 32.6% 17.5%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --success: 160 84% 39.4%;
-    --success-foreground: 210 40% 98%;
+    --background: 230 25% 7%;
+    --foreground: 220 20% 95%;
+    --card: 230 22% 12%;
+    --card-foreground: 220 20% 95%;
+    --popover: 230 22% 12%;
+    --popover-foreground: 220 20% 95%;
+    --primary: 234 85% 65%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 230 22% 15%;
+    --secondary-foreground: 220 20% 95%;
+    --muted: 230 18% 16%;
+    --muted-foreground: 225 15% 55%;
+    --accent: 230 22% 18%;
+    --accent-foreground: 220 20% 95%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 152 69% 46%;
+    --success-foreground: 0 0% 100%;
     --warning: 38 92% 50%;
-    --warning-foreground: 222.2 47.4% 11.2%;
-    --border: 217.2 32.6% 22%;
-    --input: 217.2 32.6% 22%;
-    --ring: 217.2 91.2% 59.8%;
-    --radius: 0.5rem;
-    --sidebar-background: 217.2 32.6% 17.5%;
-    --sidebar-foreground: 215 20.2% 65.1%;
-    --sidebar-primary: 217.2 91.2% 59.8%;
-    --sidebar-primary-foreground: 210 40% 98%;
-    --sidebar-accent: 217.2 32.6% 22%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 217.2 32.6% 22%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --warning-foreground: 230 25% 7%;
+    --border: 230 18% 18%;
+    --input: 230 18% 18%;
+    --ring: 234 85% 65%;
+    --radius: 0.75rem;
+    --sidebar-background: 230 25% 9%;
+    --sidebar-foreground: 225 15% 55%;
+    --sidebar-primary: 234 85% 65%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 230 22% 15%;
+    --sidebar-accent-foreground: 220 20% 95%;
+    --sidebar-border: 230 18% 16%;
+    --sidebar-ring: 234 85% 65%;
   }
 
   /* Theme 1 — Crimson Red */
@@ -65,6 +65,7 @@
     --border: 0 25% 22%;
     --input: 0 25% 22%;
     --ring: 0 72% 51%;
+    --radius: 0.75rem;
     --sidebar-background: 0 25% 14%;
     --sidebar-foreground: 0 15% 60%;
     --sidebar-primary: 0 72% 51%;
@@ -100,6 +101,7 @@
     --border: 150 25% 21%;
     --input: 150 25% 21%;
     --ring: 152 76% 44%;
+    --radius: 0.75rem;
     --sidebar-background: 150 25% 13%;
     --sidebar-foreground: 150 15% 58%;
     --sidebar-primary: 152 76% 44%;
@@ -135,6 +137,7 @@
     --border: 30 25% 22%;
     --input: 30 25% 22%;
     --ring: 38 92% 50%;
+    --radius: 0.75rem;
     --sidebar-background: 30 25% 14%;
     --sidebar-foreground: 30 15% 58%;
     --sidebar-primary: 38 92% 50%;
@@ -170,6 +173,7 @@
     --border: 270 25% 22%;
     --input: 270 25% 22%;
     --ring: 265 80% 60%;
+    --radius: 0.75rem;
     --sidebar-background: 270 25% 14%;
     --sidebar-foreground: 270 15% 58%;
     --sidebar-primary: 265 80% 60%;
@@ -205,6 +209,7 @@
     --border: 185 28% 21%;
     --input: 185 28% 21%;
     --ring: 180 70% 48%;
+    --radius: 0.75rem;
     --sidebar-background: 185 28% 13%;
     --sidebar-foreground: 185 15% 58%;
     --sidebar-primary: 180 70% 48%;
@@ -240,6 +245,7 @@
     --border: 15 25% 22%;
     --input: 15 25% 22%;
     --ring: 24 90% 55%;
+    --radius: 0.75rem;
     --sidebar-background: 15 25% 14%;
     --sidebar-foreground: 15 15% 58%;
     --sidebar-primary: 24 90% 55%;
@@ -275,6 +281,7 @@
     --border: 330 25% 22%;
     --input: 330 25% 22%;
     --ring: 335 78% 58%;
+    --radius: 0.75rem;
     --sidebar-background: 330 25% 14%;
     --sidebar-foreground: 330 15% 58%;
     --sidebar-primary: 335 78% 58%;
@@ -291,19 +298,52 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground font-sans antialiased;
     font-family: 'Inter', sans-serif;
   }
 }
 
-/* Custom scrollbar for terminal */
-.terminal-scroll::-webkit-scrollbar {
+/* Custom scrollbar */
+.terminal-scroll::-webkit-scrollbar,
+::-webkit-scrollbar {
   width: 6px;
+  height: 6px;
 }
-.terminal-scroll::-webkit-scrollbar-track {
-  background: hsl(var(--background));
+::-webkit-scrollbar-track {
+  background: transparent;
 }
-.terminal-scroll::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background: hsl(var(--border));
   border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.4);
+}
+
+/* Arix-style glass card effect */
+.glass-card {
+  background: hsl(var(--card) / 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid hsl(var(--border) / 0.6);
+}
+
+/* Arix-style gradient background for login */
+.arix-gradient {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--primary) / 0.6) 0%,
+    hsl(var(--primary) / 0.3) 50%,
+    hsl(var(--primary) / 0.1) 100%
+  );
+}
+
+/* Arix-style glow */
+.arix-glow {
+  box-shadow: 0 0 40px -12px hsl(var(--primary) / 0.3);
+}
+
+/* Status bar */
+.status-bar {
+  background: hsl(var(--card));
+  border-top: 1px solid hsl(var(--border));
 }
