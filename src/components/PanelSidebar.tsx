@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Cloud, Terminal, FolderOpen, Puzzle, Archive, Rocket, Users, Settings, Clock, UserPlus, Database, FileText, Activity, GitBranch, Home, User, LogOut } from "lucide-react";
+import { Cloud, Terminal, FolderOpen, Puzzle, Archive, Rocket, Users, Settings, Clock, UserPlus, Database, FileText, Activity, GitBranch, Home, User, LogOut, Globe } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 const mainNav = [
@@ -15,6 +15,7 @@ const mainNav = [
   { label: "Database", icon: Database },
   { label: "Server Properties", icon: FileText },
   { label: "Activity", icon: Activity },
+  { label: "Worlds", icon: Globe },
   { label: "Version", icon: GitBranch },
 ];
 
