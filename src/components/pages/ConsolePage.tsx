@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Play, RotateCcw, Square, Cpu, HardDrive, Clock, Wifi, MemoryStick, CircleDot, Copy, Check } from "lucide-react";
 import { useTheme, THEME_NAMES } from "@/contexts/ThemeContext";
+import { AreaChart, Area, XAxis, YAxis, ResponsiveContainer, Tooltip } from "recharts";
 
 const MOCK_LOGS = [
   "[15:32:01 INFO]: Starting minecraft server version 1.20.4",
@@ -20,6 +21,17 @@ const MOCK_LOGS = [
   "[15:34:12 INFO]: ShreePlayer has made the advancement [Getting an Upgrade]",
 ];
 
+// Generate mock time-series data for graphs
+const generateGraphData = (baseValue: number, variance: number, count = 20) =>
+  Array.from({ length: count }, (_, i) => ({
+    time: `${i}m`,
+    value: Math.max(0, Math.min(100, baseValue + (Math.random() - 0.5) * variance)),
+  }));
+
+const cpuData = generateGraphData(24, 20);
+const ramData = generateGraphData(60, 15);
+const diskData = generateGraphData(31, 5);
+
 const stats = [
   { label: "RAM", value: "1.2 / 2 GB", icon: MemoryStick, color: "text-primary" },
   { label: "CPU", value: "24%", icon: Cpu, color: "text-success" },
@@ -27,6 +39,67 @@ const stats = [
   { label: "Disk", value: "3.1 / 10 GB", icon: HardDrive, color: "text-muted-foreground" },
   { label: "IP Address", value: "play.shreecloud.net:25565", icon: Wifi, color: "text-primary" },
 ];
+
+interface MiniGraphProps {
+  data: { time: string; value: number }[];
+  color: string;
+  label: string;
+  currentValue: string;
+  icon: React.ElementType;
+  maxLabel?: string;
+}
+
+function MiniGraph({ data, color, label, currentValue, icon: Icon, maxLabel }: MiniGraphProps) {
+  return (
+    <div className="bg-card border border-border rounded-lg p-4 flex flex-col gap-2">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <Icon className={`h-4 w-4 ${color}`} />
+          <span className="text-xs text-muted-foreground uppercase tracking-wider">{label}</span>
+        </div>
+        <span className="text-sm font-semibold text-foreground">{currentValue}</span>
+      </div>
+      {maxLabel && (
+        <div className="w-full bg-muted rounded-full h-1.5">
+          <div
+            className="h-1.5 rounded-full bg-primary transition-all"
+            style={{ width: `${data[data.length - 1]?.value ?? 0}%` }}
+          />
+        </div>
+      )}
+      <div className="h-[80px] w-full">
+        <ResponsiveContainer width="100%" height="100%">
+          <AreaChart data={data} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
+            <defs>
+              <linearGradient id={`gradient-${label}`} x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor={`hsl(var(--primary))`} stopOpacity={0.3} />
+                <stop offset="100%" stopColor={`hsl(var(--primary))`} stopOpacity={0} />
+              </linearGradient>
+            </defs>
+            <Tooltip
+              contentStyle={{
+                background: "hsl(var(--card))",
+                border: "1px solid hsl(var(--border))",
+                borderRadius: "8px",
+                fontSize: "12px",
+                color: "hsl(var(--foreground))",
+              }}
+              formatter={(value: number) => [`${value.toFixed(1)}%`, label]}
+              labelFormatter={(l) => `${l} ago`}
+            />
+            <Area
+              type="monotone"
+              dataKey="value"
+              stroke="hsl(var(--primary))"
+              strokeWidth={2}
+              fill={`url(#gradient-${label})`}
+            />
+          </AreaChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
+  );
+}
 
 export function ConsolePage() {
   const [logs, setLogs] = useState(MOCK_LOGS);
@@ -78,6 +151,13 @@ export function ConsolePage() {
         <button className="flex items-center gap-2 px-4 py-2 rounded-lg bg-destructive text-destructive-foreground font-medium text-sm hover:scale-[1.02] transition-transform duration-150">
           <Square className="h-4 w-4" /> Stop
         </button>
+      </div>
+
+      {/* Resource Graphs */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <MiniGraph data={cpuData} color="text-success" label="CPU" currentValue="24%" icon={Cpu} maxLabel="100%" />
+        <MiniGraph data={ramData} color="text-primary" label="RAM" currentValue="1.2 / 2 GB" icon={MemoryStick} maxLabel="2 GB" />
+        <MiniGraph data={diskData} color="text-warning" label="Disk" currentValue="3.1 / 10 GB" icon={HardDrive} maxLabel="10 GB" />
       </div>
 
       {/* Terminal */}
