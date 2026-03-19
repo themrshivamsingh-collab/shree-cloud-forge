@@ -27,6 +27,7 @@ const Index = () => {
     if (activePage === "Startup") return <StartupPage />;
     if (activePage === "Server Properties") return <ServerPropertiesPage />;
     if (activePage === "Worlds") return <WorldsPage />;
+    if (activePage === "Activity") return <ActivityPage />;
     return <PlaceholderPage title={activePage} />;
   };
 
