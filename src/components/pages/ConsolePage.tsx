@@ -47,15 +47,12 @@ export function ConsolePage() {
     const themeMatch = command.trim().match(/^theme\s+(\d)$/i);
     if (themeMatch) {
       const id = parseInt(themeMatch[1], 10);
-      if (id >= 1 && id <= 7) {
+      if (id >= 0 && id <= 7) {
         setTheme(id);
         setLogs((prev) => [...prev, `> ${command}`, `[ShreeCloud] Theme changed to: ${THEME_NAMES[id]}`]);
       } else {
-        setLogs((prev) => [...prev, `> ${command}`, `[ShreeCloud] Invalid theme. Use "theme 1" to "theme 7". Use "theme 0" for default.`]);
+        setLogs((prev) => [...prev, `> ${command}`, `[ShreeCloud] Invalid theme. Use "theme 0" to "theme 7".`]);
       }
-    } else if (command.trim().match(/^theme\s+0$/i)) {
-      setTheme(0);
-      setLogs((prev) => [...prev, `> ${command}`, `[ShreeCloud] Theme reset to: Default (Blue)`]);
     } else {
       setLogs((prev) => [...prev, `> ${command}`, `[Server] Unknown command: ${command}`]);
     }
