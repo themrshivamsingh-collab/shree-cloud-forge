@@ -2,6 +2,7 @@ import { useState } from "react";
 import { PanelSidebar } from "@/components/PanelSidebar";
 import { ConsolePage } from "@/components/pages/ConsolePage";
 import { PluginInstallerPage } from "@/components/pages/PluginInstallerPage";
+import { PluginsManagerPage } from "@/components/pages/PluginsManagerPage";
 import { AccountPage } from "@/components/pages/AccountPage";
 import { PlayersPage } from "@/components/pages/PlayersPage";
 import { VersionPage } from "@/components/pages/VersionPage";
@@ -18,11 +19,19 @@ const Index = () => {
 
   const renderPage = () => {
     if (activePage === "Console") return <ConsolePage />;
-    if (activePage === "Plugin Installer") return <PluginInstallerPage />;
+    if (activePage === "Plugin Installer") return <PluginInstallerPage onManagePlugins={() => setActivePage("Plugins Manager")} />;
+    if (activePage === "Plugins Manager") return (
+      <PluginsManagerPage
+        onViewFiles={(folderName) => {
+          // Navigate to Files page — in a real app this would set the path
+          setActivePage("Files");
+        }}
+      />
+    );
     if (activePage === "Account") return <AccountPage />;
     if (activePage === "Players") return <PlayersPage />;
     if (activePage === "Version") return <VersionPage />;
-    if (activePage === "Files") return <FilesPage />;
+    if (activePage === "Files") return <FilesPage onOpenPluginsManager={() => setActivePage("Plugins Manager")} />;
     if (activePage === "Settings") return <SettingsPage />;
     if (activePage === "Startup") return <StartupPage />;
     if (activePage === "Server Properties") return <ServerPropertiesPage />;
@@ -35,7 +44,7 @@ const Index = () => {
     <div className="flex min-h-screen bg-background">
       <PanelSidebar activePage={activePage} onNavigate={setActivePage} />
       <div className="flex-1 flex flex-col overflow-hidden">
-        <main className="flex-1 p-6 overflow-auto page-enter">
+        <main className="flex-1 p-6 overflow-auto page-enter" key={activePage}>
           {renderPage()}
         </main>
       </div>
