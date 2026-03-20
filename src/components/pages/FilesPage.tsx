@@ -370,9 +370,20 @@ export function FilesPage({ onOpenPluginsManager }: FilesPageProps) {
       )}
 
       {/* Header */}
-      <div>
-        <h1 className="text-2xl font-bold text-foreground tracking-tight">Files</h1>
-        <p className="text-sm text-muted-foreground mt-1">Manage your server files</p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-foreground tracking-tight">Files</h1>
+          <p className="text-sm text-muted-foreground mt-1">Manage your server files</p>
+        </div>
+        {currentPath === "/home/server/plugins" && onOpenPluginsManager && (
+          <button
+            onClick={onOpenPluginsManager}
+            className="btn-glow flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary/15 text-primary font-medium text-sm border border-primary/20 hover:bg-primary/25 transition-all"
+          >
+            <Package className="h-4 w-4" />
+            Plugins Manager
+          </button>
+        )}
       </div>
 
       {/* Path + Back */}
