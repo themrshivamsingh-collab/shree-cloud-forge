@@ -130,7 +130,11 @@ function isEditable(name: string): boolean {
 
 // ── Component ──────────────────────────────────────────────
 
-export function FilesPage() {
+interface FilesPageProps {
+  onOpenPluginsManager?: () => void;
+}
+
+export function FilesPage({ onOpenPluginsManager }: FilesPageProps) {
   const [currentPath, setCurrentPath] = useState("/home/server");
   const [search, setSearch] = useState("");
   const [deleteTarget, setDeleteTarget] = useState<FSEntry | null>(null);
