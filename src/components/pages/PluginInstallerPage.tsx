@@ -131,7 +131,11 @@ async function fetchSpiget(query: string, sort: string, page: number): Promise<{
   return { results, totalPages };
 }
 
-export function PluginInstallerPage() {
+interface PluginInstallerProps {
+  onManagePlugins?: () => void;
+}
+
+export function PluginInstallerPage({ onManagePlugins }: PluginInstallerProps) {
   const [search, setSearch] = useState("");
   const [source, setSource] = useState<string>("Modrinth");
   const [category, setCategory] = useState<string>("All");
@@ -190,9 +194,20 @@ export function PluginInstallerPage() {
 
   return (
     <div className="space-y-5 max-w-6xl">
-      <div>
-        <h1 className="text-2xl font-bold text-foreground tracking-tight">Plugin Installer</h1>
-        <p className="text-sm text-muted-foreground mt-1">Browse and install plugins from real sources</p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-foreground tracking-tight">Plugin Installer</h1>
+          <p className="text-sm text-muted-foreground mt-1">Browse and install plugins from real sources</p>
+        </div>
+        {onManagePlugins && (
+          <button
+            onClick={onManagePlugins}
+            className="btn-glow flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary/15 text-primary font-medium text-sm border border-primary/20 hover:bg-primary/25 transition-all"
+          >
+            <PackageOpen className="h-4 w-4" />
+            Manage Plugins
+          </button>
+        )}
       </div>
 
       {/* Filters */}
