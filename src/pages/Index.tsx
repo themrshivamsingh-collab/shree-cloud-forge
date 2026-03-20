@@ -35,7 +35,7 @@ const Index = () => {
     <div className="flex min-h-screen bg-background">
       <PanelSidebar activePage={activePage} onNavigate={setActivePage} />
       <div className="flex-1 flex flex-col overflow-hidden">
-        <main className="flex-1 p-6 overflow-auto">
+        <main className="flex-1 p-6 overflow-auto page-enter">
           {renderPage()}
         </main>
       </div>

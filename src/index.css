@@ -320,30 +320,92 @@
   background: hsl(var(--muted-foreground) / 0.4);
 }
 
-/* Arix-style glass card effect */
+/* Premium glass card effect */
 .glass-card {
-  background: hsl(var(--card) / 0.8);
-  backdrop-filter: blur(12px);
-  border: 1px solid hsl(var(--border) / 0.6);
+  background: hsl(var(--card) / 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid hsl(var(--border) / 0.5);
+  box-shadow: 0 4px 24px -4px hsl(var(--background) / 0.5);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.glass-card:hover {
+  border-color: hsl(var(--border) / 0.8);
+  box-shadow: 0 8px 32px -4px hsl(var(--primary) / 0.1);
+  transform: translateY(-1px);
 }
 
-/* Arix-style gradient background for login */
+/* Premium glow effect */
+.arix-glow {
+  box-shadow: 0 0 20px -4px hsl(var(--primary) / 0.25),
+              0 0 48px -8px hsl(var(--primary) / 0.15);
+}
+
+/* Gradient backgrounds */
 .arix-gradient {
   background: linear-gradient(
     135deg,
-    hsl(var(--primary) / 0.6) 0%,
-    hsl(var(--primary) / 0.3) 50%,
-    hsl(var(--primary) / 0.1) 100%
+    hsl(var(--primary) / 0.15) 0%,
+    hsl(var(--primary) / 0.05) 50%,
+    transparent 100%
   );
 }
 
-/* Arix-style glow */
-.arix-glow {
-  box-shadow: 0 0 40px -12px hsl(var(--primary) / 0.3);
+/* Premium button glow on hover */
+.btn-glow {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  border-radius: inherit;
+}
+.btn-glow:hover::after {
+  opacity: 1;
+}
+.btn-glow:hover {
+  transform: translateY(-1px);
+}
+.btn-glow:active {
+  transform: translateY(0) scale(0.98);
 }
 
 /* Status bar */
 .status-bar {
   background: hsl(var(--card));
   border-top: 1px solid hsl(var(--border));
+}
+
+/* Sidebar active glow */
+.sidebar-active-glow {
+  box-shadow: 0 0 16px -4px hsl(var(--primary) / 0.4),
+              inset 0 0 12px -4px hsl(var(--primary) / 0.1);
+}
+
+/* Focus glow for inputs */
+.input-focus-glow:focus,
+.input-focus-glow:focus-within {
+  box-shadow: 0 0 0 2px hsl(var(--primary) / 0.2),
+              0 0 16px -4px hsl(var(--primary) / 0.15);
+  border-color: hsl(var(--primary) / 0.5);
+}
+
+/* Smooth page transitions */
+.page-enter {
+  animation: pageEnter 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
