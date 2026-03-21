@@ -38,6 +38,7 @@ const Index = () => {
     if (activePage === "Server Properties") return <ServerPropertiesPage />;
     if (activePage === "Worlds") return <WorldsPage />;
     if (activePage === "Activity") return <ActivityPage />;
+    if (activePage === "Templates") return <TemplatesPage />;
     return <PlaceholderPage title={activePage} />;
   };
 
