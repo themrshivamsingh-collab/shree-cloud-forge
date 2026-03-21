@@ -13,6 +13,7 @@ import { StartupPage } from "@/components/pages/StartupPage";
 import { ServerPropertiesPage } from "@/components/pages/ServerPropertiesPage";
 import { WorldsPage } from "@/components/pages/WorldsPage";
 import { ActivityPage } from "@/components/pages/ActivityPage";
+import { TemplatesPage } from "@/components/pages/TemplatesPage";
 
 const Index = () => {
   const [activePage, setActivePage] = useState("Console");
