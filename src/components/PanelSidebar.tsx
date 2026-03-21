@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Cloud, Terminal, FolderOpen, Puzzle, Archive, Rocket, Users, Settings, Clock, UserPlus, Database, FileText, Activity, GitBranch, Home, User, LogOut, Globe, ChevronDown } from "lucide-react";
+import { Cloud, Terminal, FolderOpen, Puzzle, Archive, Rocket, Users, Settings, Clock, UserPlus, Database, FileText, Activity, GitBranch, Home, User, LogOut, Globe, ChevronDown, LayoutTemplate } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useState } from "react";
 
