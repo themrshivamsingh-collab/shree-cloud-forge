@@ -13,6 +13,7 @@ import { StartupPage } from "@/components/pages/StartupPage";
 import { ServerPropertiesPage } from "@/components/pages/ServerPropertiesPage";
 import { WorldsPage } from "@/components/pages/WorldsPage";
 import { ActivityPage } from "@/components/pages/ActivityPage";
+import { TemplatesPage } from "@/components/pages/TemplatesPage";
 
 const Index = () => {
   const [activePage, setActivePage] = useState("Console");
@@ -37,6 +38,7 @@ const Index = () => {
     if (activePage === "Server Properties") return <ServerPropertiesPage />;
     if (activePage === "Worlds") return <WorldsPage />;
     if (activePage === "Activity") return <ActivityPage />;
+    if (activePage === "Templates") return <TemplatesPage />;
     return <PlaceholderPage title={activePage} />;
   };
 
